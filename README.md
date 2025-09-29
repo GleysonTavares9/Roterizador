@@ -16,7 +16,6 @@ Sistema avançado para otimização de rotas de coleta de resíduos, desenvolvid
 - **Sistema de Autenticação**: Controle de acesso seguro com níveis de permissão
 
 ## 📋 Requisitos do Sistema
-
 - **Sistema Operacional**: Windows 10/11 (64-bit)
 - **Processador**: 2.0 GHz ou superior
 - **Memória RAM**: 4GB mínimo (8GB recomendado)
@@ -230,3 +229,6 @@ Sistema_de_roterização/
 ## Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+=======
+# Roterizador
+>>>>>>> 2e9c65dcedbccdf310b57f174aee8d3bd6a3f669
