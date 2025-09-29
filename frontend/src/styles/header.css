@@ -1,0 +1,210 @@
+/* Estilos para o cabeçalho da aplicação */
+
+/* Cabeçalho principal */
+.app-header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Logo e marca */
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #212529;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-right: 2rem;
+}
+
+.brand-logo {
+  height: 32px;
+  margin-right: 0.75rem;
+}
+
+/* Navegação principal */
+.nav-main {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-link {
+  color: #495057;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color);
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+/* Controles do cabeçalho */
+.header-controls {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Botão de alternar menu móvel */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #495057;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* Menu de usuário */
+.user-menu {
+  position: relative;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.user-avatar:hover {
+  background-color: #dee2e6;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e9ecef;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+.user-menu.open .user-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-dropdown-item {
+  display: block;
+  padding: 0.5rem 1.25rem;
+  color: #212529;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.user-dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: var(--primary-color);
+}
+
+.user-dropdown-divider {
+  height: 1px;
+  background-color: #e9ecef;
+  margin: 0.5rem 0;
+}
+
+/* Notificações */
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.search-bar input {
+  padding-left: 2.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid #dee2e6;
+  height: 38px;
+  width: 220px;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-bar input:focus {
+  width: 280px;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .nav-main {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .search-bar input:focus {
+    width: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .app-header {
+    padding: 0 1rem;
+  }
+  
+  .search-bar {
+    display: none;
+  }
+}

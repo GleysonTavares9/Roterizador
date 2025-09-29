@@ -1,0 +1,40 @@
+/* Estilos para componentes reutilizáveis */
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 0.75rem 1.25rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+}

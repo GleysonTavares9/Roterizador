@@ -1,0 +1,238 @@
+/* Estilos para a página de login */
+.login-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  padding: 1rem;
+}
+
+/* Card Styles */
+.login-page .card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-page .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.login-page .card-header {
+  background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+  padding: 1.5rem;
+  border-bottom: none;
+}
+
+.login-page .card-body {
+  padding: 2.5rem;
+  background-color: #fff;
+}
+
+@media (max-width: 575.98px) {
+  .login-page .card-body {
+    padding: 1.5rem;
+  }
+}
+
+.login-page .card-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1.25rem 2.5rem;
+}
+
+/* Form Styles */
+.login-page .form-label {
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.login-page .form-control {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e1e5ee;
+  transition: all 0.3s ease;
+  font-size: 0.9375rem;
+  height: calc(2.75rem + 2px);
+}
+
+.login-page .form-control:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.15);
+}
+
+.login-page .input-group-text {
+  background-color: #f8f9fa;
+  border: 1px solid #e1e5ee;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.login-page .input-group .form-control:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Button Styles */
+.login-page .btn {
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+
+.login-page .btn-primary {
+  background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+}
+
+.login-page .btn-primary:hover, 
+.login-page .btn-primary:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+  background: linear-gradient(135deg, #3a56d4 0%, #2a0a8a 100%);
+}
+
+.login-page .btn-outline-primary {
+  color: #4361ee;
+  border-color: #4361ee;
+}
+
+.login-page .btn-outline-primary:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+  color: #3a56d4;
+  border-color: #3a56d4;
+}
+
+/* Divider */
+.login-page .divider {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.login-page .divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e9ecef;
+  z-index: 1;
+}
+
+.login-page .divider span {
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem;
+  background-color: #fff;
+  color: #6c757d;
+  z-index: 2;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+  .login-page {
+    padding: 1rem 0.5rem;
+  }
+  
+  .login-page .card-body {
+    padding: 1.5rem;
+  }
+  
+  .login-page .card-footer {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-page .card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Custom Checkbox */
+.login-page .form-check-input:checked {
+  background-color: #4361ee;
+  border-color: #4361ee;
+}
+
+/* Link Styles */
+.login-page a {
+  color: #4361ee;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-page a:hover {
+  color: #3a56d4;
+  text-decoration: underline;
+}
+
+/* Utility Classes */
+.login-page .text-muted {
+  color: #6c757d !important;
+}
+
+.login-page .small {
+  font-size: 0.8125rem;
+}
+
+/* Password Toggle Button */
+.login-page .password-toggle-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #f8f9fa;
+  border: 1px solid #e1e5ee;
+  border-left: none;
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.login-page .password-toggle-btn:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-page .card {
+  animation: fadeIn 0.5s ease-out;
+}

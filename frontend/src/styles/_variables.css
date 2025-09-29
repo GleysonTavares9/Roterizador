@@ -1,0 +1,52 @@
+:root {
+  /* Cores */
+  --primary-color: #1a73e8; /* Azul mais suave */
+  --primary-light: #e8f0fe; /* Azul muito claro */
+  --primary-lighter: #ffffff; /* Fundo branco puro */
+  --primary-dark: #1557b0;
+  --secondary-color: #5c6b7b;
+  --background-color: #ffffff; /* Fundo branco */
+  --sidebar-bg: #1e3a8a; /* Azul escuro para a barra lateral */
+  --sidebar-hover: #2c4da5; /* Azul um pouco mais claro para hover */
+  --sidebar-text: rgba(255, 255, 255, 0.9);
+  --sidebar-text-hover: #ffffff;
+  --text-color: #1f2937;
+  --text-muted: #4b5563;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+  --light-color: #f9fafb;
+  --dark-color: #111827;
+  
+  /* Layout */
+  --sidebar-width: 250px;
+  --header-height: 56px;
+  --footer-height: 60px;
+  --border-radius: 0.5rem;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition-speed: 0.2s;
+  
+  /* Z-index */
+  --zindex-dropdown: 1000;
+  --zindex-sticky: 1020;
+  --zindex-fixed: 1030;
+  --zindex-offcanvas: 1040;
+  --zindex-modal: 1050;
+  --zindex-popover: 1060;
+  --zindex-tooltip: 1070;
+  
+  /* Scrollbar - mais fina e discreta */
+  --scrollbar-width: 6px;
+  --scrollbar-track: #f8fafc;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+  --gradient-sidebar: linear-gradient(180deg, #1e3a8a 0%, #2c4da5 100%);
+  
+  /* Bordas */
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+}

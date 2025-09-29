@@ -1,0 +1,458 @@
+# Environment variables
+.env
+*.env.*
+!.env.example
+
+# Configurações do Windows
+Thumbs.db
+desktop.ini
+
+# Arquivos de cache do Windows
+~$*
+*.tmp
+*.temp
+*.tmp.*
+.temp/
+
+# Arquivos de backup
+*.bak
+*.swp
+*~
+*.old
+*.orig
+*.rej
+*.swo
+*.swn
+*.swp
+
+# Arquivos de instalação
+*.exe
+*.msi
+*.msm
+*.msp
+*.msix
+*.msixbundle
+
+# Arquivos de log adicionais
+*.log.*
+logs/*.log
+!logs/README.md
+
+# Arquivos de banco de dados
+*.db-journal
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Arquivos de cache do Python
+.python-version
+.python-version.*
+.python-version*
+.python-version-*
+
+# Arquivos de cache do Node.js
+.npm/
+.npmrc
+.nvmrc
+.yarn-integrity
+.yarn-metadata.json
+.yarn-tarball.tgz
+.yarn/install-state.gz
+.yarn/unplugged
+.yarn/versions
+.yarn/cache
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn/unplugged
+
+# Arquivos de cache do frontend
+frontend/.next/
+frontend/out/
+frontend/.sass-cache/
+frontend/.cache/
+frontend/.eslintcache
+frontend/.stylelintcache
+frontend/.vscode/
+frontend/coverage/
+frontend/dist/
+frontend/node_modules/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Arquivos de cache do backend
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*/__pycache__/
+backend/*/*/*/__pycache__/
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.coverage
+backend/htmlcov/
+backend/*.egg-info/
+backend/build/
+backend/dist/
+backend/.pytest_cache/
+
+# Arquivos de ambiente virtual
+venv/
+ENV/
+.env
+.venv
+env/
+venv.bat
+
+# Arquivos do sistema operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-*
+
+# Arquivos de log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de build
+/build
+/dist
+/out
+/.next
+
+# Arquivos de cache
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.nuxt/
+.cache/
+.temp/
+.tmp/
+.temp/
+.tmp/
+
+# Arquivos de ambiente local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Arquivos de configuração local
+*.local
+*.local.*
+!.env.example
+
+# Arquivos de banco de dados
+*.sqlite3
+*.sqlite
+*.db
+*.sql
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Arquivos de mídia e uploads
+/uploads/*
+!/uploads/.gitkeep
+/media/*
+!/media/.gitkeep
+/staticfiles/
+
+# Docker e contêineres
+.docker/
+docker-compose.override.yml
+
+# Arquivos temporários
+tmp/
+temp/
+*.tmp
+*.temp
+*~
+
+# Arquivos de log específicos do projeto
+route_optimization.log
+logs/*.log
+!logs/README.md
+
+# Arquivos de instalação do Windows
+*.iss
+*.iss.*
+*.tmp
+setup.exe
+unins000.*
+unins001.*
+
+# Python - Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# C extensions
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# PyCharm project files
+.idea/
+*.iml
+.idea_modules/
+
+# VSCode workspace files
+*.code-workspace
+
+# Local development settings
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências
+/frontend/node_modules
+/frontend/.next
+/frontend/out
+
+# Dependências de produção
+/frontend/.next/cache/
+/frontend/.next/server/
+/frontend/.next/static/
+
+# Cache do npm e yarn
+.npm
+.npmrc
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Logs de dependências
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configurações de ambiente
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# Arquivos de build do Next.js
+/frontend/.next/
+/frontend/out/
+
+# Arquivos de cache
+/frontend/.cache/
+/frontend/.sass-cache/
+
+# Arquivos de cobertura de teste
+/coverage/
+
+# Arquivos de produção
+/build
+
+# Arquivos de configuração local
+.eslintcache
+.stylelintcache
+
+# Arquivos de desenvolvimento
+.DS_Store
+*.pem
+
+# Depenências opcionais
+/optionalDependencies/
+
+# Arquivos de configuração local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de cache do npm
+.npm/_cacache/
+.npm/_logs/
+.npm/_hooks/
+.npm/anon-cli-*.log
+.npm/error-short.log
+.npm/debug.log
+
+# Arquivos de cache do Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Arquivos de configuração local
+.eslintrc.local.js
+.prettierrc.local.js
+.stylelintrc.local.js
+
+# Arquivos de configuração de IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# IDEs and editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Database
+*.sqlite3
+*.sqlite
+*.db
+*.sql
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local development
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build directories
+/build
+/staticfiles
+
+# Uploads
+/uploads/*
+!/uploads/.gitkeep
+
+# Docker
+data/
+.docker/
+
+# Arquivos temporários
+tmp/
+temp/

@@ -1,0 +1,26 @@
+TERMOS DE LICENÇA DE USO DO SISTEMA DE ROTEIRIZAÇÃO
+
+1. LICENÇA
+   O presente documento estabelece os termos de licença para uso do Sistema de Roteirização (doravante denominado "Software").
+
+2. DIREITOS AUTORAIS
+   Todos os direitos autorais relativos ao Software são de propriedade exclusiva de [Nome da Empresa], protegidos pelas leis de direitos autorais e tratados internacionais.
+
+3. CONCESSÃO DE LICENÇA
+   Mediante a aceitação dos termos aqui estabelecidos, é concedida ao USUÁRIO uma licença não exclusiva e intransferível para uso do Software, conforme as condições estabelecidas neste documento.
+
+4. LIMITAÇÕES
+   - O USUÁRIO não poderá modificar, descompilar, engenhar reversamente, desmontar ou realizar engenharia reversa do Software;
+   - Não é permitida a distribuição, venda, aluguel, empréstimo ou cessão do Software a terceiros sem autorização prévia por escrito;
+   - É vedado o uso do Software para fins ilegais ou não autorizados.
+
+5. GARANTIA LIMITADA
+   O Software é fornecido "NO ESTADO EM QUE SE ENCONTRA", sem garantias de qualquer tipo, expressas ou implícitas.
+
+6. LIMITAÇÃO DE RESPONSABILIDADE
+   Em hipótese alguma a [Nome da Empresa] será responsável por quaisquer danos diretos, indiretos, incidentais, especiais ou consequenciais decorrentes do uso ou da impossibilidade de uso do Software.
+
+7. DISPOSIÇÕES GERAIS
+   Este Termo de Licença representa o acordo completo entre as partes com relação ao objeto aqui tratado.
+
+© 2025 [Nome da Empresa]. Todos os direitos reservados.

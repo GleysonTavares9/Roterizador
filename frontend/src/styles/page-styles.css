@@ -1,0 +1,139 @@
+/* Estilos base para todas as páginas */
+.page-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 1.5rem;
+  background-color: transparent;
+}
+
+/* Cabeçalho da página */
+.page-header {
+  margin-bottom: 1.5rem;
+  padding: 0;
+  border-bottom: 1px solid #e5e7eb;
+  background: transparent;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.page-subtitle {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Conteúdo da página */
+.page-content {
+  padding: 1.5rem 0;
+}
+
+/* Cards de conteúdo */
+.content-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-card-header {
+  padding: 1rem 1.5rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.content-card-body {
+  padding: 1.5rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+  
+  .content-card-body {
+    padding: 1rem;
+  }
+}
+
+/* Estilo específico para a página de geolocalização */
+.geocode-page {
+  padding: 0;
+  margin: 0;
+}
+
+/* Garante consistência em todas as páginas */
+.main-content > .container,
+.main-content > .container-fluid {
+  padding: 1.5rem;
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Ajuste para o mapa na página de geolocalização */
+.leaflet-container {
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Remove margens extras de elementos internos */
+.main-content {
+  padding: 0 !important;
+}
+
+.content-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Ajusta o container principal para ficar colado na sidebar */
+.protected-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Ajusta o conteúdo principal para ocupar o espaço disponível */
+.main-content {
+  flex: 1;
+  margin-left: 250px !important; /* Largura da sidebar */
+  width: calc(100% - 250px) !important;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 1.5rem !important;
+  overflow-y: auto;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 991.98px) {
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 1rem !important;
+  }
+  
+  .page-container {
+    padding: 0 !important;
+  }
+}

@@ -1,0 +1,79 @@
+/* Public Layout Styles */
+.public-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+/* Header Styles */
+.public-layout header {
+  background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+/* Main Content Styles */
+.public-layout main {
+  flex: 1;
+  padding: 2rem 0;
+  background-color: #fff;
+}
+
+/* Footer Styles */
+.public-layout footer {
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Auth Card Styles */
+.auth-card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+  .public-layout main {
+    padding: 1.5rem 0;
+  }
+  
+  .auth-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Animation for auth forms */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-card {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,42 @@
+# Core
+fastapi==0.109.2
+uvicorn[standard]==0.27.1
+pydantic==2.6.4
+python-dotenv==1.0.1
+python-multipart==0.0.9
+
+# Banco de Dados
+SQLAlchemy==2.0.27
+alembic==1.13.1
+psycopg2-binary==2.9.9
+
+# Autenticação e Segurança
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+python-dateutil==2.9.0.post0
+pytz==2024.1
+email-validator==2.1.0.post1
+
+# Geocodificação e Mapas
+geopy==2.4.1
+osmnx==1.9.2  # Versão mais estável para produção
+shapely==2.0.3  # Versão compatível com as outras dependências
+pyproj==3.6.1
+googlemaps==4.10.0  # Para integração com Google Maps API
+
+# Roteamento e Otimização
+ortools==9.9.3964
+networkx==3.2.1
+numpy==1.26.4  # Versão LTS mais recente
+pandas==2.2.1  # Para manipulação de dados
+
+# Processamento de Dados Geoespaciais
+geopandas==0.14.3
+pygeos==0.14.0
+rtree==1.2.0
+
+# Utilitários
+tqdm==4.66.2
+python-slugify==8.0.4  # Para criação de slugs
+python-magic-bin==0.4.14; sys_platform == 'win32'  # Para Windows
+python-magic==0.4.27; sys_platform != 'win32'  # Para outros sistemas operacionais
