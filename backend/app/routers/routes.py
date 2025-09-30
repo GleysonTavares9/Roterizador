@@ -1,169 +1,94 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, Depends, HTTPException, status, Query
+from sqlalchemy.orm import Session
 from typing import List, Optional
-from datetime import datetime
-from pydantic import BaseModel, Field
-from typing import Dict, Any
+from datetime import date
+
+from .. import models, schemas
+from ..database import get_db
 
 router = APIRouter(
-    prefix="/api/routes",
+    prefix="/routes",
     tags=["routes"],
-    responses={404: {"description": "Not found"}},
 )
 
-# Modelo de dados para uma rota
-class RoutePoint(BaseModel):
-    id: str
-    address: str
-    lat: float
-    lng: float
-    sequence: int
-    estimated_arrival: Optional[str] = None
-    estimated_departure: Optional[str] = None
-
-class RouteCreate(BaseModel):
-    name: str
-    vehicle_id: str
-    driver_id: Optional[str] = None
-    start_time: str
-    end_time: str
-    points: List[RoutePoint]
-    metadata: Optional[Dict[str, Any]] = None
-
-class RouteResponse(RouteCreate):
-    id: str
-    status: str
-    created_at: datetime
-    updated_at: datetime
-    total_distance: float
-    total_duration: float
-
-# Dados de exemplo (em um cenário real, isso viria de um banco de dados)
-routes_db = {}
-
-@router.get("/", response_model=List[RouteResponse])
+@router.get("", response_model=List[schemas.Route])
 async def list_routes(
+    db: Session = Depends(get_db),
+    skip: int = 0,
+    limit: int = 100,
+    vehicle_id: Optional[int] = None,
     status: Optional[str] = None,
-    vehicle_id: Optional[str] = None,
-    start_date: Optional[str] = None,
-    end_date: Optional[str] = None
+    start_date: Optional[date] = None,
+    end_date: Optional[date] = None,
 ):
-    """
-    Lista todas as rotas, com opções de filtro.
-    """
-    # Em uma implementação real, isso buscaria do banco de dados
-    filtered_routes = list(routes_db.values())
+    """Lista todas as rotas com filtros opcionais."""
+    query = db.query(models.Route)
     
-    if status:
-        filtered_routes = [r for r in filtered_routes if r['status'].lower() == status.lower()]
     if vehicle_id:
-        filtered_routes = [r for r in filtered_routes if r['vehicle_id'] == vehicle_id]
-    
-    return filtered_routes
+        query = query.filter(models.Route.vehicle_id == vehicle_id)
+    if status:
+        query = query.filter(models.Route.status.ilike(f"%{status}%"))
+    if start_date:
+        query = query.filter(models.Route.start_time >= start_date)
+    if end_date:
+        query = query.filter(models.Route.end_time <= end_date)
+        
+    routes = query.offset(skip).limit(limit).all()
+    return routes
 
-@router.post("/", response_model=RouteResponse, status_code=status.HTTP_201_CREATED)
-async def create_route(route: RouteCreate):
-    """
-    Cria uma nova rota.
-    """
-    route_id = f"route_{len(routes_db) + 1}"
-    now = datetime.utcnow()
-    
-    # Em uma implementação real, isso salvaria no banco de dados
-    route_data = {
-        **route.dict(),
-        "id": route_id,
-        "status": "pending",
-        "created_at": now,
-        "updated_at": now,
-        "total_distance": 0.0,  # Seria calculado
-        "total_duration": 0.0,  # Seria calculado
-    }
-    
-    routes_db[route_id] = route_data
-    return route_data
+@router.post("", response_model=schemas.Route, status_code=status.HTTP_201_CREATED)
+async def create_route(route: schemas.RouteCreate, db: Session = Depends(get_db)):
+    """Cria uma nova rota no banco de dados."""
+    db_route = models.Route(**route.dict())
+    db.add(db_route)
+    db.commit()
+    db.refresh(db_route)
+    return db_route
 
-@router.get("/{route_id}", response_model=RouteResponse)
-async def get_route(route_id: str):
-    """
-    Obtém detalhes de uma rota específica.
-    """
-    if route_id not in routes_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Rota com ID {route_id} não encontrada"
-        )
-    return routes_db[route_id]
+@router.get("/{route_id}", response_model=schemas.Route)
+async def get_route(route_id: int, db: Session = Depends(get_db)):
+    """Obtém os detalhes de uma rota específica."""
+    db_route = db.get(models.Route, route_id)
+    if not db_route:
+        raise HTTPException(status_code=404, detail="Rota não encontrada")
+    return db_route
 
-@router.put("/{route_id}", response_model=RouteResponse)
-async def update_route(route_id: str, route_update: RouteCreate):
-    """
-    Atualiza uma rota existente.
-    """
-    if route_id not in routes_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Rota com ID {route_id} não encontrada"
-        )
-    
-    # Em uma implementação real, isso atualizaria no banco de dados
-    updated_route = {
-        **route_update.dict(),
-        "id": route_id,
-        "status": routes_db[route_id]["status"],  # Mantém o status atual
-        "created_at": routes_db[route_id]["created_at"],
-        "updated_at": datetime.utcnow(),
-        "total_distance": routes_db[route_id]["total_distance"],  # Mantém a distância atual
-        "total_duration": routes_db[route_id]["total_duration"],  # Mantém a duração atual
-    }
-    
-    routes_db[route_id] = updated_route
-    return updated_route
+@router.put("/{route_id}", response_model=schemas.Route)
+async def update_route(route_id: int, route: schemas.RouteUpdate, db: Session = Depends(get_db)):
+    """Atualiza uma rota existente."""
+    db_route = db.get(models.Route, route_id)
+    if not db_route:
+        raise HTTPException(status_code=404, detail="Rota não encontrada")
+
+    update_data = route.dict(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_route, key, value)
+        
+    db.commit()
+    db.refresh(db_route)
+    return db_route
 
 @router.delete("/{route_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_route(route_id: str):
-    """
-    Remove uma rota.
-    """
-    if route_id not in routes_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Rota com ID {route_id} não encontrada"
-        )
-    
-    # Em uma implementação real, isso removeria do banco de dados
-    del routes_db[route_id]
-    return None
+async def delete_route(route_id: int, db: Session = Depends(get_db)):
+    """Desativa uma rota (soft delete)."""
+    db_route = db.get(models.Route, route_id)
+    if db_route:
+        db_route.is_active = False
+        db.commit()
+    return
 
-@router.post("/{route_id}/start", response_model=RouteResponse)
-async def start_route(route_id: str):
-    """
-    Inicia uma rota, alterando seu status para 'in_progress'.
-    """
-    if route_id not in routes_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Rota com ID {route_id} não encontrada"
-        )
-    
-    route = routes_db[route_id]
-    route["status"] = "in_progress"
-    route["updated_at"] = datetime.utcnow()
-    
-    return route
+@router.post("/{route_id}/status", response_model=schemas.Route)
+async def update_route_status(
+    route_id: int, 
+    status_update: schemas.RouteStatusUpdate, 
+    db: Session = Depends(get_db)
+):
+    """Atualiza o status de uma rota (ex: iniciar, completar)."""
+    db_route = db.get(models.Route, route_id)
+    if not db_route:
+        raise HTTPException(status_code=404, detail="Rota não encontrada")
 
-@router.post("/{route_id}/complete", response_model=RouteResponse)
-async def complete_route(route_id: str):
-    """
-    Marca uma rota como concluída.
-    """
-    if route_id not in routes_db:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Rota com ID {route_id} não encontrada"
-        )
-    
-    route = routes_db[route_id]
-    route["status"] = "completed"
-    route["updated_at"] = datetime.utcnow()
-    
-    return route
+    db_route.status = status_update.status
+    db.commit()
+    db.refresh(db_route)
+    return db_route

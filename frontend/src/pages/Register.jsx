@@ -1,67 +1,23 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { FaUserPlus, FaArrowLeft } from 'react-icons/fa';
-import { toast } from 'react-toastify';
-import authService from '../services/authService';
+import useRegistrationForm from '../hooks/useRegistrationForm';
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isLoading,
+  } = useRegistrationForm();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    
-    // Validação básica
-    if (formData.password !== formData.confirmPassword) {
-      setError('As senhas não conferem');
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError('A senha deve ter pelo menos 6 caracteres');
-      return;
-    }
-
-    try {
-      setLoading(true);
-      
-      const result = await authService.register({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        confirmPassword: formData.confirmPassword
-      });
-      
-      if (result.success) {
-        toast.success(result.message);
-        navigate('/login');
-      } else {
-        setError(result.message);
-      }
-      
-    } catch (error) {
-      console.error('Erro ao registrar:', error);
-      setError('Erro ao criar conta. Tente novamente.');
-    } finally {
-      setLoading(false);
-    }
+    handleSubmit(e);
   };
 
   return (
@@ -75,19 +31,22 @@ const Register = () => {
                 <p className="text-muted">Preencha os dados para criar sua conta</p>
               </div>
               
-              {error && <Alert variant="danger">{error}</Alert>}
+              {errors.nonField && <Alert variant="danger">{errors.nonField}</Alert>}
               
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={onSubmit} noValidate>
                 <Form.Group className="mb-3" controlId="name">
                   <Form.Label>Nome Completo</Form.Label>
                   <Form.Control
                     type="text"
                     name="name"
-                    value={formData.name}
+                    value={values.name}
                     onChange={handleChange}
+                    onBlur={handleBlur}
+                    isInvalid={touched.name && !!errors.name}
                     required
                     placeholder="Digite seu nome completo"
                   />
+                  <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="email">
@@ -95,11 +54,14 @@ const Register = () => {
                   <Form.Control
                     type="email"
                     name="email"
-                    value={formData.email}
+                    value={values.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
+                    isInvalid={touched.email && !!errors.email}
                     required
                     placeholder="Digite seu e-mail"
                   />
+                  <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="password">
@@ -107,12 +69,14 @@ const Register = () => {
                   <Form.Control
                     type="password"
                     name="password"
-                    value={formData.password}
+                    value={values.password}
                     onChange={handleChange}
+                    onBlur={handleBlur}
+                    isInvalid={touched.password && !!errors.password}
                     required
                     placeholder="Digite sua senha"
-                    minLength={6}
                   />
+                  <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
                 </Form.Group>
                 
                 <Form.Group className="mb-4" controlId="confirmPassword">
@@ -120,44 +84,31 @@ const Register = () => {
                   <Form.Control
                     type="password"
                     name="confirmPassword"
-                    value={formData.confirmPassword}
+                    value={values.confirmPassword}
                     onChange={handleChange}
+                    onBlur={handleBlur}
+                    isInvalid={touched.confirmPassword && !!errors.confirmPassword}
                     required
                     placeholder="Confirme sua senha"
-                    minLength={6}
                   />
+                  <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
                 </Form.Group>
                 
-                <Button 
-                  variant="primary" 
-                  type="submit" 
-                  className="w-100 mb-3"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                <Button variant="primary" type="submit" className="w-100 mb-3" disabled={isLoading}>
+                  {isLoading ? (
+                    <><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />Registrando...</>
                   ) : (
-                    <>
-                      <FaUserPlus className="me-2" />
-                      Criar Conta
-                    </>
+                    <><FaUserPlus className="me-2" />Criar Conta</>
                   )}
                 </Button>
                 
                 <div className="text-center">
-                  <p className="mb-0">
-                    Já tem uma conta?{' '}
-                    <Link to="/login" className="text-primary">
-                      Faça login
-                    </Link>
-                  </p>
+                  <p className="mb-0">Já tem uma conta? <Link to="/login" className="text-primary">Faça login</Link></p>
                 </div>
               </Form>
               
               <div className="mt-4 text-center">
-                <Link to="/" className="text-muted small">
-                  <FaArrowLeft className="me-1" /> Voltar para o início
-                </Link>
+                <Link to="/" className="text-muted small"><FaArrowLeft className="me-1" /> Voltar para o início</Link>
               </div>
             </Card.Body>
           </Card>

@@ -1,39 +1,26 @@
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-import os
-from dotenv import load_dotenv
+from fastapi import Request
 
-# Carrega as variáveis de ambiente do arquivo .env
-load_dotenv()
+from app.config import settings
 
-# Configuração do logging do SQLAlchemy
-import logging
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
-# Configuração do banco de dados
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "sql_app.db"))
-SQLALCHEMY_DATABASE_URL = os.getenv(
-    "DATABASE_URL", 
-    f"sqlite:///{DB_PATH}"
-)
-
-# Cria a engine do SQLAlchemy
+# Cria a engine do SQLAlchemy usando a URL do banco de dados das configurações
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    settings.DATABASE_URL,
+    # connect_args é específico para SQLite e necessário para permitir o uso em múltiplos threads
+    connect_args={"check_same_thread": False} if "sqlite" in settings.DATABASE_URL else {}
 )
 
 # Cria uma fábrica de sessões
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Classe base para os modelos
+# Classe base para os modelos do SQLAlchemy
 Base = declarative_base()
 
-def get_db():
-    """Fornece uma sessão do banco de dados"""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+def get_db(request: Request) -> Session:
+    """
+    Dependência do FastAPI que fornece uma sessão de banco de dados por requisição.
+    A sessão é obtida do estado da requisição, que é gerenciado por um middleware.
+    """
+    return request.state.db
